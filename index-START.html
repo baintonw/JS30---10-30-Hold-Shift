@@ -96,6 +96,29 @@
   </div>
 
 <script>
+  const inputs = [...document.querySelectorAll('input')]
+  inputs.forEach(input => {
+    input.addEventListener('click', setIndex)
+  })
+  let start = 0
+  let finish = 0
+  let clicked = false
+
+  function setIndex(){
+    console.log('clicked', this)
+    console.log('is clicked?', clicked)
+    if(!clicked){
+      start = inputs.indexOf(this)
+    } else {
+      finish = inputs.indexOf(this)
+    }
+    clicked = !clicked
+    console.log('what is start?', start)
+    console.log('what is finish?', finish)
+    //how can i make it reset after second click?
+
+  }
+
 </script>
 </body>
 </html>
