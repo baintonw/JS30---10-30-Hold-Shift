@@ -103,18 +103,31 @@
   let start = 0
   let finish = 0
   let clicked = false
+  let doubleClicked = false
+
 
   function setIndex(){
     console.log('clicked', this)
     console.log('is clicked?', clicked)
-    if(!clicked){
+    doubleClicked = false
+    console.log('double clicked at start?', doubleClicked)
+
+    if(clicked && doubleClicked){
+      start = 0
+      finish = 0
+    }else if(!clicked){
       start = inputs.indexOf(this)
-    } else {
+      clicked = true
+    } else if(clicked){
       finish = inputs.indexOf(this)
+      doubleClicked = true
     }
-    clicked = !clicked
+
+
     console.log('what is start?', start)
     console.log('what is finish?', finish)
+
+
     //how can i make it reset after second click?
 
   }
