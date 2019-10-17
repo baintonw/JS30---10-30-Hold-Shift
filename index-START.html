@@ -100,11 +100,11 @@
   inputs.forEach(input => {
     input.addEventListener('click', setIndex)
   })
-  let start = 0
-  let finish = 0
+  let start = ""
+  let finish = ""
   let clicked = false
   let doubleClicked = false
-
+  let selected = []
 
   function setIndex(){
     console.log('clicked', this)
@@ -113,9 +113,9 @@
     console.log('double clicked at start?', doubleClicked)
 
     if(clicked && doubleClicked){
-      start = 0
-      finish = 0
-    }else if(!clicked){
+      start = ""
+      finish = ""
+    } else if(!clicked){
       start = inputs.indexOf(this)
       clicked = true
     } else if(clicked){
@@ -123,13 +123,18 @@
       doubleClicked = true
     }
 
+    selected = [...inputs.slice(start, finish + 1)]
+    selected.forEach(input => {
+      input.checked = true
+    })
+
 
     console.log('what is start?', start)
     console.log('what is finish?', finish)
-
+    console.log('selected', selected)
 
     //how can i make it reset after second click?
-
+    //Unnecessary? this is wrapped in a shift keydown
   }
 
 </script>
