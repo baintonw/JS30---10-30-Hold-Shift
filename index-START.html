@@ -125,22 +125,17 @@
         doubleClicked = true
       }
 
-      if(start < finish){
-        selected = [...inputs.slice(start, finish + 1)]
-        selected.forEach(input => {
-          input.checked = true
-        })
-      } else if(start > finish){
-        selected = [...inputs.reverse().slice(start, finish + 1)]
-        selected.forEach(input => {
-          input.checked = true
-        })
-      }
+      selected = [...inputs.splice(start, finish + 1)]
+      
+      selected.forEach(input => {
+        input.checked = true
+      })
 
 
       console.log('what is start?', start)
       console.log('what is finish?', finish)
       console.log('selected', selected)
+
     }
 
   }
