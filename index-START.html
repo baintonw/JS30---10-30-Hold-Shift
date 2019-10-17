@@ -99,9 +99,11 @@
   // console.log("%cIt Works!", "font-size:20px; color: red; background: blue")
 //event.shiftKey
   const inputs = [...document.querySelectorAll('input')]
+
   inputs.forEach(input => {
     input.addEventListener('click', setIndex)
   })
+
   let start = ""
   let finish = ""
   let clicked = false
@@ -114,17 +116,18 @@
     // console.log('is clicked?', clicked)
     doubleClicked = false
     // console.log('double clicked at start?', doubleClicked)
-    if(event.shiftKey){
+
       if(clicked && doubleClicked){
         start = ""
         finish = ""
       } else if(!clicked){
         start = inputs.indexOf(this)
         clicked = true
-      } else if(clicked){
+      } else if(clicked && event.shiftKey){
         finish = inputs.indexOf(this)
         doubleClicked = true
       }
+
       if(start > finish && finish !== ""){
         // console.log("hey!")
         selected = [...inputs.slice(finish + 1, start)]
@@ -143,7 +146,7 @@
       console.log('what is finish?', finish)
       console.log('selected', selected)
 
-    }
+
 
   }
 
