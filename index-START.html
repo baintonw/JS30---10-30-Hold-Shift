@@ -96,6 +96,7 @@
   </div>
 
 <script>
+//event.shiftKey
   const inputs = [...document.querySelectorAll('input')]
   inputs.forEach(input => {
     input.addEventListener('click', setIndex)
@@ -106,35 +107,38 @@
   let doubleClicked = false
   let selected = []
 
-  function setIndex(){
+  function setIndex(event){
+    console.log('event.shiftKey?', event.shiftKey)
     console.log('clicked', this)
     console.log('is clicked?', clicked)
     doubleClicked = false
     console.log('double clicked at start?', doubleClicked)
+    if(event.shiftKey){
+      if(clicked && doubleClicked){
+        start = ""
+        finish = ""
+      } else if(!clicked){
+        start = inputs.indexOf(this)
+        clicked = true
+      } else if(clicked){
+        finish = inputs.indexOf(this)
+        doubleClicked = true
+      }
 
-    if(clicked && doubleClicked){
-      start = ""
-      finish = ""
-    } else if(!clicked){
-      start = inputs.indexOf(this)
-      clicked = true
-    } else if(clicked){
-      finish = inputs.indexOf(this)
-      doubleClicked = true
+      selected = [...inputs.slice(start, finish + 1)]
+      selected.forEach(input => {
+        input.checked = true
+      })
+
+
+      console.log('what is start?', start)
+      console.log('what is finish?', finish)
+      console.log('selected', selected)
+
+      //how can i make it reset after second click?
+      //Unnecessary? this is wrapped in a shift keydown
     }
 
-    selected = [...inputs.slice(start, finish + 1)]
-    selected.forEach(input => {
-      input.checked = true
-    })
-
-
-    console.log('what is start?', start)
-    console.log('what is finish?', finish)
-    console.log('selected', selected)
-
-    //how can i make it reset after second click?
-    //Unnecessary? this is wrapped in a shift keydown
   }
 
 </script>
